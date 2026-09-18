@@ -1,7 +1,7 @@
 <div align="center">
 
 <h1 align="center">MedSPA</h1>
-<p align="center">Adaptive Controlled Reasoning for Medicine</p>
+<p align="center">Self-planning Medical Agents</p>
 <p align="center">
   <img src="assets/hero_logo.png" width="160" alt="MedSPA hero">
 </p>
