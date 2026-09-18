@@ -1,0 +1,67 @@
+### model
+model_name_or_path: "Qwen/Qwen3-VL-8B-Instruct"
+
+stage: sft
+do_train: true
+
+
+# ---- LoRA fine-tuning ----
+finetuning_type: lora
+
+# LoRA configuration
+lora_rank: 64
+lora_alpha: 128
+lora_dropout: 0.05
+lora_target: all
+
+
+### dataset
+dataset: reason_sft_medqa
+template: qwen3_vl
+
+cutoff_len: 2048
+overwrite_cache: false
+preprocessing_num_workers: 16
+
+
+### output
+output_dir: "checkpoints/medqa/..."
+
+logging_steps: 10
+
+save_strategy: steps
+save_steps: 1000
+save_only_model: true
+
+plot_loss: true
+
+# Do not overwrite the output directory when resuming.
+overwrite_output_dir: false
+
+
+### training
+per_device_train_batch_size: 4
+gradient_accumulation_steps: 8
+
+learning_rate: 1e-4
+num_train_epochs: 3
+
+lr_scheduler_type: cosine
+warmup_ratio: 0.03
+weight_decay: 0.05
+
+bf16: true
+ddp_timeout: 180000000
+
+
+### resume
+resume_from_checkpoint: "checkpoints/..."
+
+
+### evaluation
+val_size: 0
+
+per_device_eval_batch_size: 1
+
+eval_strategy: "no"
+eval_steps: 10000000
